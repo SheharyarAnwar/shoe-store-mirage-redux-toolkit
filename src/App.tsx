@@ -1,7 +1,12 @@
 import React from "react";
 import Home from "./Views/Home/index";
-import Category from "./Views/Category/index";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import theme from "./theme";
 import { ThemeProvider } from "@material-ui/core";
 
@@ -10,10 +15,12 @@ function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />}>
-            <Route path="men" element={<Category />} />
-            <Route path="women" element={<Category />} />
+          <Route path="/">
+            <Navigate to="/home" />
           </Route>
+          <Route path="/home" element={<Home />} />
+          <Route path="/men" element={<Home />} />
+          <Route path="/women" element={<Home />} />
         </Routes>
       </Router>
     </ThemeProvider>

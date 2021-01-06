@@ -4,11 +4,12 @@ import { makeStyles } from "@material-ui/core";
 const style = makeStyles((theme) => ({
   root: {
     borderBottom: `1px solid ${theme.palette.gray}`,
+    position: "fixed",
     display: "flex",
     justifyContent: "space-around",
     alignItems: "center",
     height: "12vh",
-    position: "relative",
+    width: "100%",
     zIndex: 1,
   },
   navItems: {

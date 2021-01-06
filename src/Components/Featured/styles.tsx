@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core";
 
 const style = makeStyles((theme) => ({
-  root: { overflowX: "hidden" },
+  root: { overflowX: "hidden", paddingTop: "12vh" },
   image: {
     display: "flex",
     justifyContent: "center",

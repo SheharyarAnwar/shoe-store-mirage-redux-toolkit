@@ -17,7 +17,8 @@ body {
 
 a {
   text-decoration: none;
-  display: contents;
+  /* display: contents; */
+  height: 100%;
 }
 body::before {
   position: absolute;
