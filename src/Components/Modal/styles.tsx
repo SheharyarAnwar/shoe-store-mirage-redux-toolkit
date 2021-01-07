@@ -4,13 +4,16 @@ const style = makeStyles((theme) => ({
   root: {
     width: "30vw",
     minWidth: "300px",
-    borderRadius: "30px",
+
     minHeight: "300px",
   },
   overflowBox: {
     width: "100%",
     height: "200px",
     overflowY: "auto",
+  },
+  dialog: {
+    borderRadius: "40px",
   },
   heading: {
     color: "#04091e",

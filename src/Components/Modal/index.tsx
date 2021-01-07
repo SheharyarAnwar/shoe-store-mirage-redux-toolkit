@@ -57,6 +57,7 @@ const Index: React.FC<SimpleDialogProps> = ({
       onClose={handleClose}
       aria-labelledby="simple-dialog-title"
       open={open}
+      classes={{ paper: classes.dialog }}
     >
       <Typography className={classes.heading} variant="h4">
         Cart
