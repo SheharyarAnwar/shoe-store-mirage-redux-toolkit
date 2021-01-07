@@ -35,6 +35,9 @@ let theme = createMuiTheme({
     slate,
     lightBlue,
   },
+  typography: {
+    fontFamily: "Oswald",
+  },
   overrides: {
     MuiDrawer: {
       paper: {

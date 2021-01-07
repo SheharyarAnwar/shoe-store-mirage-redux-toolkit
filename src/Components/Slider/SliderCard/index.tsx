@@ -6,6 +6,7 @@ import { ReactComponent as MinusIcon } from "../../../Assets/minus.svg";
 import { Shoes } from "./../../../Interfaces/index";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../Store/rootSlice";
+import useAlienClick from "./../../../Hooks/useAlienClick";
 interface SliderCardProps {
   cardData: Shoes;
   key: number;
@@ -17,19 +18,11 @@ const Index: React.FC<SliderCardProps> = ({ cardData }) => {
   const firstTime = useRef(false);
   const [quantity, setQuantity] = useState<number>(1);
   const [open, setOpen] = useState<boolean>(false);
+  const outsideClicked = useAlienClick(ref, open);
 
-  const handleOutsideClick = (e: any) => {
-    if (ref!.current && !ref!.current.contains(e.target)) {
-      setOpen(false);
-    }
-  };
   useEffect(() => {
-    document.addEventListener("mousedown", handleOutsideClick);
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-    };
-  }, []);
-
+    open && outsideClicked && setOpen(false);
+  }, [outsideClicked]);
   useEffect(() => {
     if (!firstTime.current) {
       firstTime.current = true;
@@ -39,7 +32,7 @@ const Index: React.FC<SliderCardProps> = ({ cardData }) => {
     const final = open ? "200px" : "0px";
     if (ref.current) {
       ref.current.animate([{ width: initial }, { width: final }], {
-        duration: 800,
+        duration: open ? 600 : 200,
         easing: "ease-in-out",
       }).onfinish = () => {
         ref!.current!.style.width = final;
@@ -49,11 +42,18 @@ const Index: React.FC<SliderCardProps> = ({ cardData }) => {
 
   const onAddToCartClicked = (e: any) => {
     e.stopPropagation();
-    dispatch(addToCart({ id: cardData.id, quantity: quantity }));
+    dispatch(
+      addToCart({
+        id: cardData.id,
+        quantity: quantity,
+        name: cardData.name,
+        price: cardData.price,
+      })
+    );
     setOpen((prev) => {
-      console.log(prev);
       return false;
     });
+    setQuantity(1);
   };
   return (
     <>

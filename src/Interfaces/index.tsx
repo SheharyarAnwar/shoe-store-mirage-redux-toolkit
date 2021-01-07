@@ -11,6 +11,8 @@ export type Category = "M" | "F";
 export interface Cart {
   quantity: number;
   id: number;
+  name: string;
+  price: number;
 }
 
 export interface RootState {

@@ -42,5 +42,31 @@ const style = makeStyles((theme) => ({
     borderWidth: "2px 0px",
     cursor: "pointer",
   },
+  circle: {
+    height: "50px",
+    width: "50px",
+    borderRadius: "50%",
+    justifyContent: "center",
+    alignItems: "center",
+    cursor: "pointer",
+    position: "relative",
+    display: "flex",
+    backgroundColor: theme.palette.red,
+  },
+  notify: {
+    position: "absolute",
+    width: "25px",
+    height: "25px",
+    borderRadius: "50%",
+    textAlign: "center",
+    top: -10,
+    right: -10,
+    backgroundColor: "white",
+    "& p": {
+      fontFamily: "Oswald",
+      fontSize: "16px",
+      color: theme.palette.red,
+    },
+  },
 }));
 export default style;

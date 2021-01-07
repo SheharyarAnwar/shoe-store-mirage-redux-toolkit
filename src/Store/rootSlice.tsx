@@ -16,14 +16,32 @@ const slice = createSlice({
     addToCart: (state, action: PayloadAction<Cart>) => {
       const { id, quantity } = action.payload;
       const shoe = state.shoes[id];
+      let alreadyExisting: boolean = false;
+      state.cart = state.cart.map((val) => {
+        if (val.id === id) {
+          alreadyExisting = true;
+          return { ...val, quantity: val.quantity + quantity };
+        } else {
+          return val;
+        }
+      });
+
+      !alreadyExisting && state.cart.push(action.payload);
       state.total += shoe.price * quantity;
-      state.cart.push(action.payload);
     },
     removeFromCart: (state, action: PayloadAction<number>) => {
-      state.cart = state.cart.filter((val) => val.id !== action.payload);
+      let price = 0;
+      state.cart = state.cart.filter((val) => {
+        if (val.id === action.payload) {
+          price = val.quantity * val.price;
+        }
+        return val.id !== action.payload;
+      });
+      state.total = state.total - price;
     },
     clearCart: (state) => {
       state.cart = [];
+      state.total = 0;
     },
   },
 });
